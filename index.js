@@ -53,7 +53,7 @@ const main = async () => {
             url: 'https://api.github.com/orgs/mids-w203/teams/'
                  + team + "/repos/mids-w203/" + ls_repo,
             data: { permission: 'pull' },
-            header: {
+            headers: {
                 'Authorization': "token " + w203_secret,
                 'Accept': "application/vnd.github.inertia-preview+json"
             }
