@@ -25,33 +25,19 @@ Date.prototype.getWeek = function() {
     return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
         - 3 + (week1.getDay() + 6) % 7) / 7);
 }
-
-const main = async () => {
-    const slack_token = core.getInput('slack_token', { required: true });
-    const w203_secret = core.getInput('w203_secret', { required: true });
-   
-    const date = new Date();
-    
-    if( !mids_weeks.includes(date.getWeek()) )
-    return;
-    
-    const mids_week = mids_weeks.indexOf(date.getWeek()) + 1;
-    const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
-    console.log(ls_repo);
-    const day = 3; //date.getDay();
-    
-    sections[day - 1].forEach( sec => {
+release = function(sections = [], repo, year, semester, w203_secret, slack_token) {
+    sections.forEach( sec => {
         const team = semester+ "_" + year + "_section_" + sec.toString().padStart(2, '0');
         const channel="datasci-203-20" + year + "-" + semester + "-sec-" 
         + sec.toString().padStart(2, '0');
         
-        //console.log(team);
-        //console.log(channel);
+        console.log("team: " + team);
+        console.log("channel: " + channel);
         
         const request_github = axios({
             method: 'put',
             url: 'https://api.github.com/orgs/mids-w203/teams/'
-                 + team + "/repos/mids-w203/" + ls_repo,
+                 + team + "/repos/mids-w203/" + repo,
             data: { permission: 'pull' },
             headers: {
                 'Authorization': "token " + w203_secret,
@@ -62,7 +48,7 @@ const main = async () => {
         const request_slack = axios({
             method: 'post',
             url: 'https://slack.com/api/chat.postMessage',
-            data: { channel: channel, text:  "Released https://github.com/mids-w203/" + ls_repo },
+            data: { channel: channel, text:  "Released https://github.com/mids-w203/" + repo },
             headers: {
                 'Authorization': "Bearer " + slack_token,
                 'Content-Type': "application/json"
@@ -70,7 +56,35 @@ const main = async () => {
         });
 
     });
+}
+const main = async () => {
+    const slack_token = core.getInput('slack_token', { required: true });
+    const w203_secret = core.getInput('w203_secret', { required: true });
+   
+    const date = new Date();
     
+    if( !mids_weeks.includes(date.getWeek()) )
+        return;
+    
+    const mids_week = mids_weeks.indexOf(date.getWeek()) + 1;
+    const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
+    const day = date.getDay();
+    
+    // LS Solutions
+    console.log("ls_repo: " + ls_repo);
+    release(sections[day - 1], ls_repo, year, semester, w203_secret, slack_token);
+
+    // HW Solutions
+    if( day <= 2 )
+        hw_week = mids_week - 2;
+    else 
+        hw_week = mids_week - 1;
+    
+    const hw_repo = "unit_" + hw_week.toString().padStart(2, '0') + "_hw_sol";
+
+    console.log("hw_repo: " + hw_repo);
+    release(sections[(day + 5) % 7], ls_repo, year, semester, w203_secret, slack_token);
 }
 
 main();
+
