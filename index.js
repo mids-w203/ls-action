@@ -1,11 +1,65 @@
+const year = '22';
+const semester = 'sp';
+const sections = [
+    [1,2,4,5,12,13],
+    [03,8,14,15],
+    [07,9],
+    [6,10,11]
+];
+const mids_weeks = [
+    1,2,3,4,5,6,7,8,9,10,11,13,14,15
+];
+
+process.env.TZ = 'America/Los_Angeles' 
 const core = require('@actions/core');
-const github = require('@actions/github');
+const axios = require('axios');
+
+Date.prototype.getWeek = function() {
+    var date = new Date(this.getTime());
+    date.setHours(0, 0, 0, 0);
+    // Thursday in current week decides the year.
+    date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+    // January 4 is always in week 1.
+    var week1 = new Date(date.getFullYear(), 0, 4);
+    // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+    return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
+        - 3 + (week1.getDay() + 6) % 7) / 7);
+}
 
 const main = async () => {
     const slack_token = core.getInput('slack_token', { required: true });
     const w203_secret = core.getInput('w203_secret', { required: true });
-
-    const octokit = new github.getOctokit(token);
+   
+    const date = new Date();
+    
+    if( !mids_weeks.includes(date.getWeek()) )
+    return;
+    
+    const mids_week = mids_weeks.indexOf(date.getWeek()) + 1;
+    const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
+    console.log(ls_repo);
+    const day = date.getDay();
+    
+    sections[day - 1].forEach( sec => {
+        const team = semester+ "_" + year + "_section_" + sec.toString().padStart(2, '0');
+        const channel="datasci-203-20" + year + "-" + semester + "-sec-" 
+        + sec.toString().padStart(2, '0');
+        
+        //console.log(team);
+        //console.log(channel);
+        
+        const request = axios({
+            method: 'put',
+            url: 'https://api.github.com/orgs/mids-w203/teams/'
+                 + team + "/repos/mids-w203/" + ls_repo,
+            data: { permission: 'pull' },
+            header: {
+                'Authorization': "token " + w203_secret,
+                'Accept': "application/vnd.github.inertia-preview+json"
+            }
+        });
+    });
+    
 }
 
 main();
