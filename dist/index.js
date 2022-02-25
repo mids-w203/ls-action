@@ -4823,7 +4823,7 @@ const main = async () => {
     const mids_week = mids_weeks.indexOf(date.getWeek()) + 1;
     const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
     console.log(ls_repo);
-    const day = date.getDay();
+    const day = 1; //date.getDay();
     
     sections[day - 1].forEach( sec => {
         const team = semester+ "_" + year + "_section_" + sec.toString().padStart(2, '0');
