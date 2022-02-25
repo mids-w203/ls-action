@@ -4787,8 +4787,8 @@ const year = '22';
 const semester = 'sp';
 const sections = [
     [1,2,4,5,12,13],
-    [03,8,14,15],
-    [07,9],
+    [3,8,14,15],
+    [7,9],
     [6,10,11]
 ];
 const mids_weeks = [
@@ -4833,7 +4833,7 @@ const main = async () => {
         //console.log(team);
         //console.log(channel);
         
-        const request = axios({
+        const request_github = axios({
             method: 'put',
             url: 'https://api.github.com/orgs/mids-w203/teams/'
                  + team + "/repos/mids-w203/" + ls_repo,
@@ -4843,6 +4843,17 @@ const main = async () => {
                 'Accept': "application/vnd.github.inertia-preview+json"
             }
         });
+
+        const request_slack = axios({
+            method: 'post',
+            url: 'https://slack.com/api/chat.postMessage',
+            data: { channel: channel, text:  "Released https://github.com/mids-w203/" + ls_repo },
+            headers: {
+                'Authorization': "Bearer " + slack_token,
+                'Content-Type': "application/json"
+            }
+        });
+
     });
     
 }
