@@ -1,0 +1,13 @@
+name: 'Live Sessions Release Action'
+description: 'Release live session solutions everyday for suitable sections.'
+author: 'W203 Team' 
+inputs: 
+  slack_token:
+    description: 'token to post on Slack'
+    required: true
+  w203_secret:
+    description: 'secret key to perform admin actions'
+    required: true
+runs:
+    using: 'node16'
+    main: 'index.js'
