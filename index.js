@@ -1,13 +1,13 @@
 const year = '22';
-const semester = 'sp';
-const sections = [
-    [1,2,4,5,12,13],
-    [3,8,14,15],
-    [7,9],
-    [6,10,11]
-];
+const semester = 'su';
+const sections = {
+    2: [1,2,3,4],
+    3: [5,7],
+    4: [8,9],
+    5: [6,10]
+};
 const mids_weeks = [
-    1,2,3,4,5,6,7,8,9,10,11,13,14,15
+    18,19,20,21,22,23,24,25,26,27,28,29,30,31
 ];
 
 process.env.TZ = 'America/Los_Angeles' 
