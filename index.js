@@ -72,7 +72,8 @@ const main = async () => {
     
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
-    release(sections[day - 1], ls_repo, year, semester, w203_secret, slack_token);
+    console.log(sections[day - 1]);
+    //release(sections[day - 1], ls_repo, year, semester, w203_secret, slack_token);
 
     // HW Solutions
     if( day <= 2 )
@@ -82,8 +83,8 @@ const main = async () => {
     
     const hw_repo = "unit_" + hw_week.toString().padStart(2, '0') + "_hw_sol";
 
-    console.log("hw_repo: " + hw_repo);
-    release(sections[(day + 5) % 7], ls_repo, year, semester, w203_secret, slack_token);
+    //console.log("hw_repo: " + hw_repo);
+    //release(sections[(day + 5) % 7], ls_repo, year, semester, w203_secret, slack_token);
 }
 
 main();
