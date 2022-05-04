@@ -4786,7 +4786,7 @@ var __webpack_exports__ = {};
 const year = '22';
 const semester = 'su';
 const sections = {
-    2: [1,2,3,4],
+    2: [2],
     3: [5,7],
     4: [8,9],
     5: [6,10]
