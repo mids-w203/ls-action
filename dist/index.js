@@ -4811,8 +4811,9 @@ Date.prototype.getWeek = function() {
         - 3 + (week1.getDay() + 6) % 7) / 7);
 }
 release = function(sections = [], repo, year, semester, w203_secret, slack_token) {
+    console.log(sections);
     sections.forEach( sec => {
-        const team = semester+ "_" + year + "_section_" + sec.toString().padStart(2, '0');
+        const team = semester + "_" + year + "_section_" + sec.toString().padStart(2, '0');
         const channel="datasci-203-20" + year + "-" + semester + "-sec-" 
         + sec.toString().padStart(2, '0');
         
@@ -4839,7 +4840,6 @@ release = function(sections = [], repo, year, semester, w203_secret, slack_token
                 'Content-Type': "application/json"
             }
         });
-
     });
 }
 const main = async () => {
@@ -4857,8 +4857,8 @@ const main = async () => {
     
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
-    console.log(sections[day - 1]);
-    //release(sections[day - 1], ls_repo, year, semester, w203_secret, slack_token);
+    //console.log(sections[day - 1]);
+    release(sections[day - 1], ls_repo, year, semester, w203_secret, slack_token);
 
     // HW Solutions
     if( day <= 2 )
