@@ -73,7 +73,7 @@ const main = async () => {
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
     //console.log(sections[day - 1]);
-    release(sections[day - 1], ls_repo, year, semester, w203_secret, slack_token);
+    release(sections[day], ls_repo, year, semester, w203_secret, slack_token);
 
     // HW Solutions
     if( day <= 2 )
