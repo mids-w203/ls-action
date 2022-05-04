@@ -4811,7 +4811,7 @@ Date.prototype.getWeek = function() {
         - 3 + (week1.getDay() + 6) % 7) / 7);
 }
 release = function(sections = [], repo, year, semester, w203_secret, slack_token) {
-    console.log(sections);
+    console.log("sections: " + sections);
     sections.forEach( sec => {
         const team = semester + "_" + year + "_section_" + sec.toString().padStart(2, '0');
         const channel="datasci-203-20" + year + "-" + semester + "-sec-" 
