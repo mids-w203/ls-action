@@ -4784,15 +4784,14 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const year = '22';
-const semester = 'su';
+const semester = 'fa';
 const sections = {
-    2: [1,2,3,4],
-    3: [5,7],
-    4: [8,9],
-    5: [6,10]
+    2: [1,2,3,4,5],
+    3: [8],
+    4: [6,7,9,98,99]
 };
 const mids_weeks = [
-    18,19,20,21,22,23,24,25,26,27,28,29,30,31
+    34,35,36,37,38,39,40,41,42,43,44,46,48,49
 ];
 
 process.env.TZ = 'America/Los_Angeles' 
