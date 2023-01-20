@@ -28,8 +28,8 @@ release = function(sections = [], repo, year, semester, w203_secret, slack_token
     console.log("sections: " + sections);
     sections.forEach( sec => {
         const team = semester + "_" + year + "_section_" + sec.toString().padStart(2, '0');
-        const channel="datasci-203-20" + year + "-" + "spring" + "-sec-" // hard-coded semester
-        + sec.toString().padStart(2, '0');
+        const channel="datasci-203-20" + year + "-" + "spring" + "-sec-" 
+        + sec.toString().padStart(2, '0'); // hard-coded semester
         
         console.log("team: " + team);
         console.log("channel: " + channel);
@@ -67,7 +67,7 @@ const main = async () => {
     
     const mids_week = mids_weeks.indexOf(date.getWeek()) + 1;
     const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
-    const day = 2; //date.getDay();
+    const day = 3; //date.getDay();
     
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
