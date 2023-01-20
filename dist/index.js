@@ -4783,15 +4783,15 @@ module.exports = require("zlib");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const year = '22';
-const semester = 'fa';
+const year = '23';
+const semester = 'sp';
 const sections = {
-    2: [1,2,3,4,5],
-    3: [8],
-    4: [6,7,9,98,99]
+    2: [1,2,3,4,10],
+    3: [5,6],
+    4: [7,8,9]
 };
 const mids_weeks = [
-    34,35,36,37,38,39,40,41,42,43,44,46,48,49
+    2,3,4,5,6,7,8,9,10,11,12,14,15,16
 ];
 
 process.env.TZ = 'America/Los_Angeles' 
@@ -4813,7 +4813,7 @@ release = function(sections = [], repo, year, semester, w203_secret, slack_token
     console.log("sections: " + sections);
     sections.forEach( sec => {
         const team = semester + "_" + year + "_section_" + sec.toString().padStart(2, '0');
-        const channel="datasci-203-20" + year + "-" + semester + "-sec-" 
+        const channel="datasci-203-20" + year + "-" + "spring" + "-sec-" // hard-coded semester
         + sec.toString().padStart(2, '0');
         
         console.log("team: " + team);
