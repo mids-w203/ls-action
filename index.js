@@ -67,11 +67,12 @@ const main = async () => {
     
     const mids_week = mids_weeks.indexOf(date.getWeek()) + 1;
     const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
-    const day = date.getDay();
+    const day = 2; //date.getDay();
     
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
     //console.log(sections[day - 1]);
+
     console.log("day: " + day);
     release(sections[day], ls_repo, year, semester, w203_secret, slack_token);
 
