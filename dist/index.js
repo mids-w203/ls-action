@@ -4852,7 +4852,7 @@ const main = async () => {
     
     const mids_week = mids_weeks.indexOf(date.getWeek()) + 1;
     const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
-    const day = 3; //date.getDay();
+    const day = 4; //date.getDay();
     
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
