@@ -4784,14 +4784,15 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const year = '23';
-const semester = 'sp';
+const semester = 'summer';
+const sem = 'su'
 const sections = {
-    2: [1,2,3,4,10],
+    2: [1,2,3,4],
     3: [5,6],
     4: [7,8,9]
 };
 const mids_weeks = [
-    2,3,4,5,6,7,8,9,10,11,12,14,15,16
+    19,20,21,22,23,24,25,26,27,28,29,30,31,32
 ];
 
 process.env.TZ = 'America/Los_Angeles' 
@@ -4809,11 +4810,11 @@ Date.prototype.getWeek = function() {
     return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
         - 3 + (week1.getDay() + 6) % 7) / 7);
 }
-release = function(sections = [], repo, year, semester, w203_secret, slack_token) {
+release = function(sections = [], repo, w203_secret, slack_token) {
     console.log("sections: " + sections);
     sections.forEach( sec => {
-        const team = semester + "_" + year + "_section_" + sec.toString().padStart(2, '0');
-        const channel="datasci-203-20" + year + "-" + "spring" + "-sec-" 
+        const team = sem + "_" + year + "_section_" + sec.toString().padStart(2, '0');
+        const channel="datasci-203-20" + year + "-" + semester + "-sec-" 
         + sec.toString().padStart(2, '0'); // hard-coded semester
         
         console.log("team: " + team);
@@ -4859,7 +4860,7 @@ const main = async () => {
     //console.log(sections[day - 1]);
 
     console.log("day: " + day);
-    release(sections[day], ls_repo, year, semester, w203_secret, slack_token);
+    release(sections[day], ls_repo, w203_secret, slack_token);
 
     // HW Solutions
     if( day <= 2 )
