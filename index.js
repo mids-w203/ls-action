@@ -1,3 +1,5 @@
+// Build: npm run build
+//
 const year = '23';
 const semester = 'summer';
 const sem = 'su'
