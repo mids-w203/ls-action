@@ -1,8 +1,8 @@
 // Build: npm run build
 //
 const year = '23';
-const semester = 'summer';
-const sem = 'su'
+const semester = 'fall'; // long name
+const sem = 'fa' // short name
 const sections = {
     2: [1,2,3,4],
     3: [5,6],
@@ -11,10 +11,17 @@ const sections = {
 const mids_weeks = [
     19,20,21,22,23,24,25,26,27,28,29,30,31,32
 ];
+const hw_sol_release_weeks = [
+    2,3,5
+]; // this is mids week/unit
+const hw_release_day = 4 // Monday = 1, etc.
 
-process.env.TZ = 'America/Los_Angeles' 
+process.env.TZ = 'America/Los_Angeles' ;
 const core = require('@actions/core');
 const axios = require('axios');
+const slack_token = core.getInput('slack_token', { required: true });
+const w203_secret = core.getInput('w203_secret', { required: true });
+var exec = require('child_process').exec;
 
 Date.prototype.getWeek = function() {
     var date = new Date(this.getTime());
@@ -27,7 +34,8 @@ Date.prototype.getWeek = function() {
     return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
         - 3 + (week1.getDay() + 6) % 7) / 7);
 }
-release = function(sections = [], repo, w203_secret, slack_token) {
+
+release_ls = function(sections = [], repo) {
     console.log("sections: " + sections);
     sections.forEach( sec => {
         const team = sem + "_" + year + "_section_" + sec.toString().padStart(2, '0');
@@ -59,10 +67,37 @@ release = function(sections = [], repo, w203_secret, slack_token) {
         });
     });
 }
+
+release_hw = function(repo) {
+    const channel="datasci-203-20" + year + "-" + semester; 
+    const team = semester + "_" + year + "_students";
+
+    console.log("channel: " + channel);
+    console.log("team: " + team);
+        
+    const request_github = axios({
+        method: 'put',
+        url: 'https://api.github.com/orgs/mids-w203/teams/'
+            + team + "/repos/mids-w203/" + repo,
+        data: { permission: 'pull' },
+        headers: {
+            'Authorization': "token " + w203_secret,
+            'Accept': "application/vnd.github.inertia-preview+json"
+        }
+    });
+
+    const request_slack = axios({
+        method: 'post',
+        url: 'https://slack.com/api/chat.postMessage',
+        data: { channel: channel, text:  "Released https://github.com/mids-w203/" + repo },
+        headers: {
+            'Authorization': "Bearer " + slack_token,
+            'Content-Type': "application/json"
+        }
+    });
+}
+
 const main = async () => {
-    const slack_token = core.getInput('slack_token', { required: true });
-    const w203_secret = core.getInput('w203_secret', { required: true });
-   
     const date = new Date();
     
     if( !mids_weeks.includes(date.getWeek()) )
@@ -77,18 +112,14 @@ const main = async () => {
     //console.log(sections[day - 1]);
 
     console.log("day: " + day);
-    release(sections[day], ls_repo, w203_secret, slack_token);
+    release_ls(sections[day], ls_repo);
 
     // HW Solutions
-    if( day <= 2 )
-        hw_week = mids_week - 2;
-    else 
-        hw_week = mids_week - 1;
-    
-    const hw_repo = "unit_" + hw_week.toString().padStart(2, '0') + "_hw_sol";
-
-    //console.log("hw_repo: " + hw_repo);
-    //release(sections[(day + 5) % 7], ls_repo, year, semester, w203_secret, slack_token);
+    if(day == hw_release_day && hw_sol_release_weeks.includes(mids_week)) {
+        const hw_repo = "unit_" + (mids_week - 1).toString().padStart(2, '0') + "_hw_sol";
+        console.log("hw_repo: " + hw_repo);
+        release_hw(hw_repo);
+    }
 }
 
 main();
