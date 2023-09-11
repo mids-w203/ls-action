@@ -5968,19 +5968,19 @@ var __webpack_exports__ = {};
 (() => {
 // Build: npm run build
 //
-const year = '23';
-const semester = 'fall'; // long name
-const sem = 'fa' // short name
+const year = '23'; // 2 digit year as string (e.g. '23' for 2023)
+const semester = 'fall'; // long name ('fall','spring', or 'summer')
+const sem = 'fa' // short name ('fa','sp', or 'su') 
 const sections = {
-    2: [1,2,3,4],
-    3: [5,6],
-    4: [7,8,9]
+    2: [1,2,3,98],
+    3: [4,5,6],
+    4: [7,99]
 };
 const mids_weeks = [
-    19,20,21,22,23,24,25,26,27,28,29,30,31,32
+    35,36,37,38,39,40,41,42,43,44,46,48,49,50
 ];
 const hw_sol_release_weeks = [
-    2,3,5
+    2,3,5 
 ]; // this is mids week/unit
 const hw_release_day = 4 // Monday = 1, etc.
 
@@ -6071,9 +6071,9 @@ const main = async () => {
     if( !mids_weeks.includes(date.getWeek()) )
         return;
     
-    const mids_week= mids_weeks.indexOf(date.getWeek()) + 1;
+    const mids_week= 1 //mids_weeks.indexOf(date.getWeek()) + 1;
     const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
-    const day = date.getDay();
+    const day = 1 //date.getDay();
     
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
