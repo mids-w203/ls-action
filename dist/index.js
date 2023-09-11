@@ -5983,7 +5983,7 @@ const mids_weeks = [
 ]; 
 const hw_sol_release_weeks = [
     // Weeks where we have homeworks released to students
-    2,3,5
+    //2,3,5
 ]; 
 const hw_release_day = 4 // Monday = 1, etc.
 
@@ -6076,7 +6076,7 @@ const main = async () => {
     
     const mids_week= 2 //mids_weeks.indexOf(date.getWeek()) + 1;
     const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
-    const day = 3 //date.getDay();
+    const day = 4 //date.getDay();
     
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
