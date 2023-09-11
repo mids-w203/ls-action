@@ -1,19 +1,22 @@
 // Build: npm run build
 //
-const year = '23'; // 2 digit year as string (e.g. '23' for 2023)
+const year = '23';       // 2 digit year as string (e.g. '23' for 2023)
 const semester = 'fall'; // long name ('fall','spring', or 'summer')
-const sem = 'fa' // short name ('fa','sp', or 'su') 
+const sem = 'fa'         // short name ('fa','sp', or 'su') 
 const sections = {
     2: [1,2,3,98],
     3: [4,5,6],
     4: [7,99]
 };
 const mids_weeks = [
+    // Iso weeks where we have class
+    // first entry will be week 1 for hw/ls, second will be week 2, etc.
     35,36,37,38,39,40,41,42,43,44,46,48,49,50
-];
+]; 
 const hw_sol_release_weeks = [
-    2,3,5 
-]; // this is mids week/unit
+    // Weeks where we have homeworks released to students
+    2,3,5
+]; 
 const hw_release_day = 4 // Monday = 1, etc.
 
 process.env.TZ = 'America/Los_Angeles' ;
