@@ -6074,9 +6074,9 @@ const main = async () => {
     if( !mids_weeks.includes(date.getWeek()) )
         return;
     
-    const mids_week= 1 //mids_weeks.indexOf(date.getWeek()) + 1;
+    const mids_week= 2 //mids_weeks.indexOf(date.getWeek()) + 1;
     const ls_repo = "unit_" + mids_week.toString().padStart(2, '0') + "_ls_sol";
-    const day = 4 //date.getDay();
+    const day = 2 //date.getDay();
     
     // LS Solutions
     console.log("ls_repo: " + ls_repo);
