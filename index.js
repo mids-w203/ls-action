@@ -15,7 +15,9 @@ const mids_weeks = [
 ]; 
 const hw_sol_release_weeks = [
     // Weeks where we have homeworks released to students
-    //2,3,5
+    // Should be the unit number + 1 
+    // i.e. when you put 2 in the list, repo hw_1_sol will get released week 2. 
+    2,3,4,6,10,12,13 
 ]; 
 const hw_release_day = 4 // Monday = 1, etc.
 
