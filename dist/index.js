@@ -5973,7 +5973,7 @@ const semester = 'fall'; // long name ('fall','spring', or 'summer')
 const sem = 'fa'         // short name ('fa','sp', or 'su') 
 const sections = {
     2: [1,2,3,98],
-    3: [4,5,6],
+    3: [4,5,6,8],
     4: [7,99]
 };
 const mids_weeks = [
