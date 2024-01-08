@@ -11,7 +11,7 @@ const sections = {
 const mids_weeks = [
     // Iso weeks where we have class
     // first entry will be week 1 for hw/ls, second will be week 2, etc.
-    2,3,4,5,6,7,8,9,10,11,13,14,15
+    2,3,4,5,6,7,8,9,10,11,12,14,15,16
 ]; 
 const hw_sol_release_weeks = [
     // Weeks where we have homeworks released to students
