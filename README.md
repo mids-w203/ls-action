@@ -32,3 +32,8 @@ const hw_sol_release_weeks = [
 ]; 
 const hw_release_day = 4 // Monday = 1, etc.
 ```
+
+## Code Runner 
+
+Note that the actual action that runs this code is in instructor_central. It's at https://github.com/mids-w203/instructor_central/blob/master/.github/workflows/release_ls_sol.yml
+
