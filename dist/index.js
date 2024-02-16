@@ -5968,22 +5968,24 @@ var __webpack_exports__ = {};
 (() => {
 // Build: npm run build
 //
-const year = '23';       // 2 digit year as string (e.g. '23' for 2023)
-const semester = 'fall'; // long name ('fall','spring', or 'summer')
-const sem = 'fa'         // short name ('fa','sp', or 'su') 
+const year = '24';       // 2 digit year as string (e.g. '23' for 2023)
+const semester = 'spring'; // long name ('fall','spring', or 'summer')
+const sem = 'sp'         // short name ('fa','sp', or 'su') 
 const sections = {
-    2: [1,2,3,98],
-    3: [4,5,6,8],
-    4: [7,99]
+    2: [1,2,3,4],
+    3: [5,6,7],
+    4: [8,9,10,11]
 };
 const mids_weeks = [
     // Iso weeks where we have class
     // first entry will be week 1 for hw/ls, second will be week 2, etc.
-    35,36,37,38,39,40,41,42,43,44,46,48,49,50
+    2,3,4,5,6,7,8,9,10,11,12,14,15,16
 ]; 
 const hw_sol_release_weeks = [
     // Weeks where we have homeworks released to students
-    //2,3,5
+    // Should be the unit number + 1 
+    // i.e. when you put 2 in the list, repo hw_1_sol will get released week 2. 
+    2,3,4,6,8,10,12,13 
 ]; 
 const hw_release_day = 4 // Monday = 1, etc.
 
@@ -6010,8 +6012,8 @@ release_ls = function(sections = [], repo) {
     console.log("sections: " + sections);
     sections.forEach( sec => {
         const team = sem + "_" + year + "_section_" + sec.toString().padStart(2, '0');
-        const channel="datasci-203-20" + year + "-" + semester + "-sec-" 
-        + sec.toString().padStart(2, '0'); 
+        const channel="datasci-203-20" + year + "-" + semester + "-section" 
+        + sec.toString(); 
         
         console.log("team: " + team);
         console.log("channel: " + channel);
