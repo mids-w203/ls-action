@@ -5969,17 +5969,18 @@ var __webpack_exports__ = {};
 // Build: npm run build
 //
 const year = '24';       // 2 digit year as string (e.g. '23' for 2023)
-const semester = 'spring'; // long name ('fall','spring', or 'summer')
-const sem = 'sp'         // short name ('fa','sp', or 'su') 
+const semester = 'summer'; // long name ('fall','spring', or 'summer')
+const sem = 'su'         // short name ('fa','sp', or 'su') 
 const sections = {
-    2: [1,2,3,4],
-    3: [5,6,7],
-    4: [8,9,10,11]
+    2: [1,2],
+    3: [3,6,7],
+    4: [4,5,8]
 };
 const mids_weeks = [
     // Iso weeks where we have class
     // first entry will be week 1 for hw/ls, second will be week 2, etc.
-    2,3,4,5,6,7,8,9,10,11,12,14,15,16
+    //2 ,3 ,4 ,5 ,6 ,7 ,8 ,9 ,10,11,12,14,15,16 //Spr (as of 2024)
+    19,20,21,22,23,24,25,26,27,28,29,30,31,32 //Sum (as of 2024)
 ]; 
 const hw_sol_release_weeks = [
     // Weeks where we have homeworks released to students
