@@ -9,5 +9,5 @@ inputs:
     description: 'secret key to perform admin actions'
     required: true
 runs:
-    using: 'node16'
+    using: 'node20'
     main: 'dist/index.js'
