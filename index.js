@@ -46,7 +46,7 @@ release_ls = function(sections = [], repo) {
     sections.forEach( sec => {
         const team = sem + "_" + year + "_section_" + sec.toString().padStart(2, '0');
         const channel="datasci-203-20" + year + "-" + semester + "-section" 
-        + sec.toString(); 
+        + sec.toString().padStart(2, '0'); 
         
         console.log("team: " + team);
         console.log("channel: " + channel);
